@@ -1,0 +1,25 @@
+server {
+        listen 80;
+        server_name trenchdefense.com www.trenchdefense.com;
+
+        root /var/www/trenchdefense-back/public;
+        index index.html index.htm index.php;
+
+        location / {
+                #For laravel websites
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+               include snippets/fastcgi-php.conf;
+               fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+        location ~ /.well-known {
+                allow all;
+        }
+}

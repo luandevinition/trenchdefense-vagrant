@@ -1,0 +1,23 @@
+server {
+        listen 80;
+        server_name sample.com www.sample.com;
+
+        root /var/www/sample;
+        index index.html index.htm index.php;
+
+        location / {
+                #For other php websites
+                #try_files $uri $uri/ =404;
+
+                #For laravel websites
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+               include snippets/fastcgi-php.conf;
+               # With php7.1-fpm:
+               fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+               # With php7.1-cgi alone:
+               #fastcgi_pass 127.0.0.1:9000;
+        }
+}
