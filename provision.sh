@@ -54,8 +54,8 @@ sudo cp /vagrant/nginx_config/trenchdefense /etc/nginx/sites-enabled/trenchdefen
 echo "Restart nginx"
 sudo service nginx restart
 
-mysql -u root -ptoor -e "DROP DATABASE IF EXISTS trenchdefense;"
-mysql -u root -ptoor -e "CREATE DATABASE trenchdefense CHARACTER SET utf8;"
-mysql -u root -ptoor -e "GRANT ALL PRIVILEGES ON trenchdefense.* TO 'trenchdefense'@'localhost' IDENTIFIED BY 'trenchdefense';"
-mysql -u root -ptoor -e "GRANT ALL PRIVILEGES ON trenchdefense.* TO 'trenchdefense'@'%' IDENTIFIED BY 'trenchdefense';"
+mysql -u root -proot -e "DROP DATABASE IF EXISTS trenchdefense;"
+mysql -u root -proot -e "CREATE DATABASE trenchdefense CHARACTER SET utf8;"
+mysql -u root -proot -e "GRANT ALL PRIVILEGES ON trenchdefense.* TO 'trenchdefense'@'localhost' IDENTIFIED BY 'trenchdefense';"
+mysql -u root -proot -e "GRANT ALL PRIVILEGES ON trenchdefense.* TO 'trenchdefense'@'%' IDENTIFIED BY 'trenchdefense';"
 echo "**************************END INSTALLING APPLICATIONS**************************"
