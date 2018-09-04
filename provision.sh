@@ -3,7 +3,7 @@
 echo "**************************START INSTALLING APPLICATIONS**************************"
 
 #Add repository for php-fpm
-sudo apt-get install software-properties-common -y
+sudo apt-get install software-properties-common build-essential  -y
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
 
@@ -24,6 +24,19 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 echo "mysql-server mysql-server/root_password password root" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password root" | sudo debconf-set-selections
 sudo apt-get -y install mysql-server
+
+#Install Protoc
+cd /vagrant/protoc_config
+tar -zxf protobuf-2.6.0.tar.gz
+cd /vagrant/protoc_config/protobuf-2.6.0
+./configure
+make
+make check
+sudo make install
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+sudo ldconfig
+protoc --version
+
 
 echo "Copy php.ini"
 sudo cp /vagrant/php_config/php.ini /etc/php/7.1/fpm/php.ini
