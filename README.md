@@ -11,7 +11,7 @@ Edit hosts file on host machine:
 
 Go go trenchdefense-vagrant and run "vagrant up"
 
-vagrant ssh
+Access vagrant using "vagrant ssh"
 
 Note for database:
 
