@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./trenchdefense-back", "/var/www/trenchdefense-back", owner: "www-data", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
 
   #install Nginx, PHP-FPM 7.1 + extensions, MySQL, Composer
-  config.vm.provision "shell", path: "provision.sh"
+  #config.vm.provision "shell", path: "provision.sh"
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", 1024]
