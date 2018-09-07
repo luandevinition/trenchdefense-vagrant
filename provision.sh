@@ -25,6 +25,14 @@ echo "mysql-server mysql-server/root_password password root" | sudo debconf-set-
 echo "mysql-server mysql-server/root_password_again password root" | sudo debconf-set-selections
 sudo apt-get -y install mysql-server
 
+#Install redis
+cd /tmp
+cp /vagrant/redis_config/redis-stable.tar.gz .
+tar xzvf redis-stable.tar.gz
+cd redis-stable
+make
+sudo make install
+
 #Install Protoc
 cd /vagrant/protoc_config
 tar -zxf protobuf-2.6.0.tar.gz
@@ -36,6 +44,19 @@ sudo make install
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 sudo ldconfig
 protoc --version
+
+echo "Create redis user and database folder"
+sudo adduser --system --group --no-create-home redis
+sudo mkdir /var/lib/redis
+sudo chown redis:redis /var/lib/redis
+sudo chmod 770 /var/lib/redis
+echo "Copy redis.conf and create redis.service"
+sudo mkdir /etc/redis
+sudo cp /vagrant/redis_config/redis.conf /etc/redis
+sudo cp /vagrant/redis_config/redis.service /etc/systemd/system/
+echo "Restart Redis"
+sudo systemctl start redis
+sudo systemctl status redis
 
 
 echo "Copy php.ini"
