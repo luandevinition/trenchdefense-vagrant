@@ -80,3 +80,8 @@ mysql -u root -proot -e "CREATE DATABASE trenchdefense CHARACTER SET utf8;"
 mysql -u root -proot -e "GRANT ALL PRIVILEGES ON trenchdefense.* TO 'trenchdefense'@'localhost' IDENTIFIED BY 'trenchdefense';"
 mysql -u root -proot -e "GRANT ALL PRIVILEGES ON trenchdefense.* TO 'trenchdefense'@'%' IDENTIFIED BY 'trenchdefense';"
 echo "**************************END INSTALLING APPLICATIONS**************************"
+
+
+cd /var/www/trenchdefense-back/
+cp .env_local .env
+sh reset.sh
