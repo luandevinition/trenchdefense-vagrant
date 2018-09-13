@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :private_network, ip: '192.168.70.70'
   config.vm.synced_folder '.', '/vagrant'
-  config.vm.synced_folder "./trenchdefense-back", "/var/www/trenchdefense-back", owner: "www-data", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
+  config.vm.synced_folder "./trenchdefense-back", "/var/www/trenchdefense-back", owner: "www-data", group: "vagrant", mount_options: ["dmode=775,fmode=775"]
 
   #install Nginx, PHP-FPM 7.1 + extensions, MySQL, Composer
   #config.vm.provision "shell", path: "provision.sh"
