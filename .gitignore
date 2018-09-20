@@ -4,4 +4,5 @@
 trenchdefense-back/
 trenchdefense-front/
 trenchdefense-proto/
- 
+.vagrant/
+protoc_config/
